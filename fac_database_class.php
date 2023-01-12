@@ -15,7 +15,7 @@ class facDatabase {
 		$this->pg_pdo = new PDO($wwsserver, $wwsuser, $wwspass, $options);
 	}
 	
-	public function splitQuery($sql, $splitField, $parameter, $outputFilePrefix, $header) {
+	public function splitQuery($sql, $splitField, $parameter, $outputFilePrefix, $header, $createType = "a") {
 	
 		$row_qry = $this->pg_pdo->prepare($sql);
 
@@ -27,15 +27,15 @@ class facDatabase {
 		
 		$switch = null;
 		$path = pathinfo($outputFilePrefix);
-		
+
 		while ($row = $row_qry->fetch( PDO::FETCH_ASSOC )) {
-			
+
 			if ( ($switch != $row[$splitField]) or (!isset($output)) ) {
 
 				if (isset($output) and (get_resource_type($output) === 'file')) { fclose($output); }
 				print "<a href='".$this->docpath.$path['filename'].'_'.$row[$splitField].'.'.$path['extension']."'>";
 				print $this->docpath.$path['filename'].'_'.$row[$splitField].'.'.$path['extension']."</a><br>";
-				$output = fopen($this->docpath.$path['filename'].'_'.$row[$splitField].'.'.$path['extension'], "a");
+				$output = fopen($this->docpath.$path['filename'].'_'.$row[$splitField].'.'.$path['extension'], $createType);
 				if ($header == null) {
 					fputcsv($output, array_keys($row),";",'"');
 				} else {

@@ -62,4 +62,6 @@
 
  $outputFilePrefix = "./Artikelparameter.csv";
  
+ $createType = "w";
+ 
  ?>

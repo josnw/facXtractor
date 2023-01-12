@@ -15,7 +15,7 @@
 	and a.linr <> 999999 and a.qgrp < 900
 	group by a.arnr, l.xxak, l.xyak, abz1, abz2, abst, asco, asrt, a.apjs, a.ameh, l.linr, a.linr  , absp, absg, p1.AKLK  , p6.AKLK  , 
 	  cprs , m.ARGV,   a.quse 
-	order by a.arnr
+	order by l.linr,a.arnr
 	";
  $header = [
   'Artikel',
@@ -49,5 +49,7 @@
  ];
 
  $outputFilePrefix = "./Preispflege.csv";
+ 
+ $createType = "w";
  
  ?>

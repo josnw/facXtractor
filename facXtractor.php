@@ -27,7 +27,7 @@
 	include 'profil_'.preg_replace("[^A-Za-z0-9]","",$_GET['profil']).'.php';
  }
  $lager = new facDatabase();
- $lager->splitQuery($sql, $splitField, $parameter, $outputFilePrefix, $header);
+ $lager->splitQuery($sql, $splitField, $parameter, $outputFilePrefix, $header, $createType);
 
 
 
